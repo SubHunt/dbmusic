@@ -1,12 +1,9 @@
+--DROP TABLE genres, singers, genressingers, albums, singersalbums, tracks, collections, trackscollections; 
 -- Создаем таблицу Жанры
 CREATE TABLE IF NOT EXISTS genres (
 	genre_id SERIAL PRIMARY KEY,
 	name VARCHAR(20) UNIQUE NOT NULL 
 );
-
---INSERT INTO genres (name) VALUES ('pop');
---INSERT INTO genres (name) VALUES ('rock');
---INSERT INTO genres (name) VALUES ('jazz');
 
 --Создаем таблицу Singers
 CREATE TABLE IF NOT EXISTS singers (
@@ -24,9 +21,10 @@ CREATE TABLE IF NOT EXISTS genressingers (
 -- Создаем таблицу Альбомы
 CREATE TABLE IF NOT EXISTS albums (
 	album_id SERIAL PRIMARY KEY,
-	name VARCHAR(20) UNIQUE NOT NULL,
-	year INTEGER NOT NULL
+	name VARCHAR(40) UNIQUE NOT NULL,
+	year INTEGER NOT NULL CONSTRAINT year_alb CHECK (year >= 1990)
 );
+
 --Создаем таблицу SingersAlbums
 CREATE TABLE IF NOT EXISTS singersalbums (
 	singer_id INTEGER REFERENCES singers(singer_id),
@@ -38,15 +36,20 @@ CREATE TABLE IF NOT EXISTS singersalbums (
 CREATE TABLE IF NOT EXISTS tracks (
 	track_id SERIAL PRIMARY KEY,
 	name VARCHAR(40) NOT NULL,
-	duration VARCHAR(5) NOT NULL,
+	duration INTEGER CONSTRAINT dur_pos CHECK (duration > 0),
 	album_id INTEGER REFERENCES albums(album_id)
 );
 
 --Создаем таблицу Collections
 CREATE TABLE IF NOT EXISTS collections (
 	collection_id SERIAL PRIMARY KEY,
-	name VARCHAR(20) UNIQUE NOT NULL,
-	year INTEGER NOT NULL,
-	track_id INTEGER REFERENCES tracks(track_id)
-) 
+	name VARCHAR(20) NOT NULL,
+	year INTEGER NOT NULL CONSTRAINT year_coll CHECK (year >= 1990)
+) ;
 
+--Создаем таблицу TracksCollections
+CREATE TABLE IF NOT EXISTS trackscollections (
+	track_id INTEGER REFERENCES tracks(track_id),
+	collection_id INTEGER REFERENCES collections(collection_id),
+	CONSTRAINT pk_3 PRIMARY KEY (track_id, collection_id)
+);

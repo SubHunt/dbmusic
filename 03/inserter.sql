@@ -1,4 +1,4 @@
-TRUNCATE TABLE genres RESTART IDENTITY CASCADE;
+--TRUNCATE TABLE genres RESTART IDENTITY CASCADE;
 -- Заполняем таблицу жанры
 INSERT INTO 
 	genres (name) 
@@ -10,7 +10,7 @@ VALUES
 	('blues'),
 	('rap');
 	
-TRUNCATE TABLE singers RESTART IDENTITY CASCADE;
+--TRUNCATE TABLE singers RESTART IDENTITY CASCADE;
 -- Заполняем таблицу исполнители
 INSERT INTO 
 	singers (name)
@@ -75,30 +75,51 @@ VALUES
 INSERT INTO 
 	tracks (name, duration, album_id)
 VALUES
-	('Remember the Time', 3.25, 1),
-	('Americano', 4.07, 2),
-	('In My Defence', 3.52, 3),
-	('Barcelona', 5.42, 3),
-	('God Gave Me Everything', 3.34, 4),
-	('Blood in the Water', 5.58, 5),
-	('Cornelia Street', 4.47, 6),
-	('My World Is Over', 4.02, 8),
-	('Shrike', 5.00, 8),
-	('The Night We Called It a Day', 3.40, 9),
-	('Fall', 4.22, 10),
-	('You Rock My World', 5.39, 11),
-	('Heaven Can Wait', 4.49, 11),
-	('Heartbreaker', 5.10, 11),
-	('Privacy', 5.05, 11);
+	('Remember the Time', 205, 1),
+	('Americano', 247, 2),
+	('In My Defence', 232, 3),
+	('Barcelona', 342, 3),
+	('God Gave Me Everything', 214, 4),
+	('Blood in the Water', 358, 5),
+	('Cornelia Street', 287, 6),
+	('My World Is Over', 242, 8),
+	('Shrike', 300, 8),
+	('The Night We Called It a Day', 220, 9),
+	('Fall', 262, 10),
+	('You Rock My World', 339, 11),
+	('Heaven Can Wait', 289, 11),
+	('Heartbreaker', 310, 11),
+	('Privacy', 305, 11);
 
 INSERT INTO
-	collections (name, year, track_id)
+	collections (name, year)
 VALUES 
-	('first',2015,4),
-	('second',2016,14),
-	('third',2017,2),	
-	('fourth',2018,1),
-	('fifth',2019,1),
-	('sixth',2020,9),
-	('seventh',2021,15),
-	('eight',2022,14);
+	('first',2015),
+	('second',2016),
+	('third',2017),	
+	('fourth',2018),
+	('fifth',2019),
+	('sixth',2020),
+	('seventh',2021),
+	('eight',2022);
+INSERT INTO	
+	trackscollections (track_id, collection_id)
+VALUES 
+	(2,6),
+	(5,1),
+	(7,8),
+	(1,3),
+	(8,5),
+	(9,2),
+	(11,3),
+	(15,5),
+	(12,7),
+	(4,8),
+	(6,5),
+	(8,4),
+	(14,2),
+	(3,1),
+	(5,7),
+	(10,2),
+	(15,4),
+	(13,8);

@@ -6,7 +6,7 @@ SELECT name, duration FROM tracks
 WHERE  duration = (SELECT max(duration) FROM  tracks);
 --название треков, продолжительность которых не менее 3,5 минуты;
 SELECT name, duration FROM tracks
-WHERE duration >= 3.5;
+WHERE duration >= 230;
 --названия сборников, вышедших в период с 2018 по 2020 год включительно;
 SELECT name, year FROM collections
 WHERE YEAR BETWEEN 2018 AND 2020;
